@@ -9,6 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+
+//  Once the SERVICE interface is defined, we can implement the methods
 @Service
 @RequiredArgsConstructor
 //@Transactional(readOnly = true)

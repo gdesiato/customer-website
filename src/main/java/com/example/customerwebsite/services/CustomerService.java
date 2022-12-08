@@ -3,6 +3,7 @@ package com.example.customerwebsite.services;
 import com.example.customerwebsite.model.Customer;
 import java.util.List;
 
+// Here is where we insert the functionalities (methods) that we need
 public interface CustomerService {
 
     List<Customer> getAllCustomers();

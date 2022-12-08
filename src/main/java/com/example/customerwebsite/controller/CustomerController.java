@@ -10,6 +10,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
+// We want to create some ENDPOINTS or some SERVLETS which are going to be used by third parties (the outside world)
+// to interact with this application.
 @Controller
 public class CustomerController {
 

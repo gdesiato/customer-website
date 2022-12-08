@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Configuration;
 import java.util.Arrays;
 import java.util.List;
 
+//Bootstrapping file. The file that contains the man method
 @Configuration
 @SpringBootApplication
 public class CustomerWebsiteApplication {
