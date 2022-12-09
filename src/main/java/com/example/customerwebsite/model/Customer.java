@@ -19,4 +19,9 @@ public class Customer {
     private String email;
     private Integer age;
     private String address;
+
+    // MAPPEDBY means that the Customer is the owning side of this OneToOne relationship
+    // and the RentalCar is the non-owning side of this relationship
+    @OneToOne (mappedBy = "customer")
+    private RentalCar car;
 }
