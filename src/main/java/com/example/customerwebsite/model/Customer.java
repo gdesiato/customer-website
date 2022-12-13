@@ -1,6 +1,5 @@
 package com.example.customerwebsite.model;
 
-
 import lombok.*;
 import javax.persistence.*;
 
@@ -12,6 +11,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 public class Customer {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -24,4 +24,5 @@ public class Customer {
     // and the RentalCar is the non-owning side of this relationship
     @OneToOne (mappedBy = "customer")
     private RentalCar car;
+
 }

@@ -19,7 +19,7 @@ public class MotoService {
         return motoRepository.findAll();
     }
 
-    public List<RentalMoto> getAvailableCars() {
+    public List<RentalMoto> getAvailableMoto() {
         return getMoto().stream().filter(c -> c.getCustomer() == null)
                 .collect(Collectors.toList());
     }

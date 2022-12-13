@@ -1,9 +1,9 @@
 package com.example.customerwebsite.controller;
 
         import com.example.customerwebsite.model.Customer;
-        import com.example.customerwebsite.model.RentalCar;
-        import com.example.customerwebsite.services.CarService;
+        import com.example.customerwebsite.model.RentalMoto;
         import com.example.customerwebsite.services.CustomerService;
+        import com.example.customerwebsite.services.MotoService;
         import org.springframework.beans.factory.annotation.Autowired;
         import org.springframework.stereotype.Controller;
         import org.springframework.ui.Model;
@@ -15,58 +15,58 @@ package com.example.customerwebsite.controller;
 public class MotoController {
 
     @Autowired
-    CarService carService;
+    MotoService motoService;
 
     @Autowired
     CustomerService customerService;
 
     @GetMapping("/moto")
     public String viewHomePage(Model model) {
-        final List<RentalCar> carList = carService.getCars();
-        model.addAttribute("carList", carList);
-        return "cars";
+        final List<RentalMoto> motoList = motoService.getMoto();
+        model.addAttribute("motoList", motoList);
+        return "moto";
     }
 
-    @GetMapping("/new-car")
-    public String showNewCarPage(Model model) {
-        RentalCar car = new RentalCar();
-        model.addAttribute("car", car);
-        return "new-car";
+    @GetMapping("/new-moto")
+    public String showNewMotoPage(Model model) {
+        RentalMoto moto = new RentalMoto();
+        model.addAttribute("moto", moto);
+        return "new-moto";
     }
 
-    @PostMapping("/cars")
-    public String saveCar(@ModelAttribute("car") RentalCar car, Model model) {
+    @PostMapping("/moto")
+    public String saveMoto(@ModelAttribute("moto") RentalMoto moto, Model model) {
         try {
-            carService.saveCar(car);
+            motoService.saveMoto(moto);
         } catch (IllegalArgumentException e) {
-            model.addAttribute("message", "Could not save car, " + e.getMessage());
+            model.addAttribute("message", "Could not save moto, " + e.getMessage());
             return "error-page";
         }
-        return "redirect:/cars";
+        return "redirect:/moto";
     }
 
-    @RequestMapping("/remove/{id}")
-    public String removeCar(@PathVariable(name = "id") Long carId) {
-        RentalCar car = carService.getCar(carId);
-        car.setCustomer(null);
-        carService.saveCar(car);
+    @RequestMapping("/moto/remove/{id}")
+    public String removeMoto(@PathVariable(name = "id") Long motoId) {
+        RentalMoto moto = motoService.getMoto(motoId);
+        moto.setCustomer(null);
+        motoService.saveMoto(moto);
         return "redirect:/";
     }
 
-    @GetMapping("/cars/assign/{id}")
-    public String assignCar(@PathVariable(name = "id") Long id, Model model) {
+    @GetMapping("/moto/assign/{id}")
+    public String assignMoto(@PathVariable(name = "id") Long id, Model model) {
         Customer customer = customerService.getCustomer(id);
-        List<RentalCar> carList = carService.getAvailableCars();
+        List<RentalMoto> motoList = motoService.getAvailableMoto();
         model.addAttribute("customer", customer);
-        model.addAttribute("carList", carList);
-        return "assign-car";
+        model.addAttribute("carList", motoList);
+        return "assign-moto";
     }
 
-    @PostMapping("/cars/assign")
-    public String saveCarAssignment(@RequestParam("customerId") Long customerId, @RequestParam("carId") Long carId) {
-        RentalCar car = carService.getCar(carId);
-        car.setCustomer(customerService.getCustomer(customerId));
-        carService.saveCar(car);
+    @PostMapping("/moto/assign")
+    public String saveMotoAssignment(@RequestParam("customerId") Long customerId, @RequestParam("motoId") Long motoId) {
+        RentalMoto moto = motoService.getMoto(motoId);
+        moto.setCustomer(customerService.getCustomer(customerId));
+        motoService.saveMoto(moto);
         return "redirect:/";
     }
 }
