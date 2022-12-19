@@ -36,6 +36,9 @@
                 <a th:text="${(customer.car == null) ? 'Assign Car' : ''}" th:href="@{'/cars/assign/' + ${customer.id}}"></a>
                 <a th:text="${(customer.car != null) ? 'Remove Car' : ''}"
                    th:href="${(customer.car != null) ? '/cars/remove/' + customer.car.getId() : ''}"></a>
+                <a th:text="${(customer.moto == null) ? 'Assign Moto' : ''}" th:href="@{'/moto/assign/' + ${customer.id}}"></a>
+                <a th:text="${(customer.moto != null) ? 'Remove Moto' : ''}"
+                   th:href="${(customer.moto != null) ? '/moto/remove/' + customer.moto.getId() : ''}"></a>
             </td>
         </tr>
         </tbody>

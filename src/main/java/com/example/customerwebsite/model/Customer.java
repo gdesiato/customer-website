@@ -25,4 +25,7 @@ public class Customer {
     @OneToOne (mappedBy = "customer")
     private RentalCar car;
 
+    @OneToOne (mappedBy = "customer")
+    private RentalMoto moto;
+
 }
