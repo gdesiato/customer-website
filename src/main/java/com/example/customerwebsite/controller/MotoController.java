@@ -58,7 +58,7 @@ public class MotoController {
         Customer customer = customerService.getCustomer(id);
         List<RentalMoto> motoList = motoService.getAvailableMoto();
         model.addAttribute("customer", customer);
-        model.addAttribute("carList", motoList);
+        model.addAttribute("motoList", motoList);
         return "assign-moto";
     }
 

@@ -19,7 +19,7 @@
                 <td>Customer Email: <strong><span th:text="${customer.email}"></span></strong></td>
             </tr>
             <tr>
-                <td>Assign Car:
+                <td>Assign Moto:
                     <select class="form-select" th:name="motoId">
                         <option th:if="${motoList.isEmpty()}">None Available</option>
                         <option th:each="moto : ${motoList}" th:value="${moto.id}" th:text="${moto.toString()}"></option>
