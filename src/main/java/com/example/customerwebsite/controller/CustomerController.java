@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.Arrays;
 import java.util.List;
 
 // We want to create some ENDPOINTS or some SERVLETS which are going to be used by third parties (the outside world)
@@ -33,6 +34,19 @@ public class CustomerController {
         Customer customer = new Customer();
         model.addAttribute("customer", customer);
         return "new-customer";
+    }
+
+    @GetMapping("/customer-list")
+    public String showListOfCustomer(){
+        if (customerService.getAllCustomers().isEmpty()) {
+            List<Customer> customerList = customerService.saveAllCustomer(Arrays.asList(
+                    Customer.builder()
+                            .fullName("Customer 1")
+                            .email("customer1@gmail.com")
+                            .address("Customer Address One")
+                            .age(30).build()));
+        }
+        return "customer-list";
     }
 
     @PostMapping(value = "/save")
