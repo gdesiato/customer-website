@@ -6,6 +6,7 @@ import javax.persistence.*;
 import java.util.Collection;
 
 @Entity
+@Table(name = "roles")
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -18,6 +19,7 @@ public class Role {
     private Long id;
 
     private String name;
+
     @ManyToMany(mappedBy = "roles")
     private Collection<User> users;
 

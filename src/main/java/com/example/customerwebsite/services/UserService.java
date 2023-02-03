@@ -47,21 +47,21 @@ public class UserService implements UserDetailsService {
         return userRepo.findByUsername(username);
     }
 
-    public User createNewUser(User userDetails) {
-        userDetails.setId(null);
-        userDetails.getAuthorities().forEach(a -> a.setId(null));
+    public User createNewUser(User user) {
+        user.setId(null);
+//        user.getAuthorities().forEach(a -> a.setId(null));
 
         //override or set user settings to correct values
-        userDetails.setAccountNonExpired(true);
-        userDetails.setAccountNonLocked(true);
-        userDetails.setCredentialsNonExpired(true);
-        userDetails.setEnabled(true);
-        userDetails.setAuthorities(Collections.singletonList(new Role(Role.Roles.ROLE_USER)));
+//        user.setAccountNonExpired(true);
+//        userDetails.setAccountNonLocked(true);
+//        userDetails.setCredentialsNonExpired(true);
+//        userDetails.setEnabled(true);
+//        user.setAuthorities(Collections.singletonList(new Role(Role.Roles.ROLE_USER)));
 
-        checkPassword(userDetails.getPassword());
-        userDetails.setPassword(encoder.encode(userDetails.getPassword()));
+        checkPassword(user.getPassword());
+        user.setPassword(encoder.encode(user.getPassword()));
         try {
-            return userRepo.save(userDetails);
+            return userRepo.save(user);
         } catch (Exception e) {
             throw new IllegalStateException(e.getMessage(), e.getCause());
         }
@@ -75,3 +75,4 @@ public class UserService implements UserDetailsService {
             throw new IllegalStateException("Password is too short. Must be longer than 6 characters");
         }
     }
+}

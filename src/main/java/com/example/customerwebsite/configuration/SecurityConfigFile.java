@@ -18,12 +18,16 @@ public class SecurityConfigFile {
                 //disable CSRF for Postman usage
                 .csrf(csrf -> csrf.disable())
                 .authorizeRequests(auth -> auth
+                        // Allow unauthenticated access to: "/", "/webjars/**", "/css/**", "/login/**", "/images/**", "/register"
+                        // and require all other requests to be authenticated.
+                        // Allow users with USER_ROLE access to "/customer-view", and require ADMIN_ROLE for all other endpoints.
+                        // Add the .formLogin() method to enable the Spring generated login page.
                         .antMatchers("/","/webjars/**", "/css/**", "/login/**", "/images/**").permitAll()
                         .antMatchers("/register").permitAll()
                         .antMatchers("/customer-view").hasRole("USER_ROLE")
                         .antMatchers("/**").hasRole("ADMIN_ROLE")
-                        //all other requests should be authenticated
-                        .anyRequest().authenticated())
+                //all other requests should be authenticated
+                .anyRequest().authenticated())
                 .formLogin();
         return http.build();
     }

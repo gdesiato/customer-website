@@ -30,6 +30,15 @@ public class UserController {
         return "registration";
     }
 
+    // Create the POST /register method. In this method,
+    // you will take in a user object then utilize your UserService to verify and persist it
+    // (with an encoded password!) to the database.
+    @PostMapping("/register")
+    public String registerUserAccount(){
+
+        return "";
+    }
+
     @PostMapping("/users")
     public ResponseEntity<?> createNewUser(@RequestBody User userDetails) {
         try {
