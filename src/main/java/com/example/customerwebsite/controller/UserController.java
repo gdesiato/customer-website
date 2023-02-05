@@ -27,7 +27,7 @@ public class UserController {
     public String showRegistrationForm(WebRequest webRequest, Model model){
         User user = new User();
         model.addAttribute("user", user);
-        return "registration";
+        return "register";
     }
 
     // Create the POST /register method. In this method,
