@@ -1,10 +1,13 @@
 package com.example.customerwebsite.controller;
 
 import com.example.customerwebsite.model.Customer;
+import com.example.customerwebsite.model.User;
 import com.example.customerwebsite.services.CustomerService;
+import com.example.customerwebsite.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -18,6 +21,9 @@ public class CustomerController {
 
     @Autowired
     private CustomerService customerService;
+
+    @Autowired
+    private UserService userService;
 
     //call the service to retrieve all the customers
     @GetMapping("/")
@@ -81,6 +87,30 @@ public class CustomerController {
         }
         customerService.saveCustomer(customer);
         return "redirect:/";
+    }
+
+    @GetMapping("/register")
+    public String showRegistrationForm(Model model) {
+        model.addAttribute("user", new User());
+        return "register";
+    }
+
+    // Create the POST /register method. In this method,
+    // you will take in a user object then utilize your UserService to verify and persist it
+    // (with an encoded password!) to the database.
+//    @PostMapping("/register")
+//    public String registerUserAccount(){
+//
+//        return "";
+//    }
+
+    @PostMapping("/register")
+    public String registerUser(@ModelAttribute User user, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "registration";
+        }
+        userService.save(user);
+        return "redirect:/login";
     }
 
     @RequestMapping("/delete/{id}")
