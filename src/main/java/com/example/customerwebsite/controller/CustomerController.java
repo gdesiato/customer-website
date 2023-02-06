@@ -107,7 +107,7 @@ public class CustomerController {
     @PostMapping("/register")
     public String registerUser(@ModelAttribute User user, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "registration";
+            return "register";
         }
         userService.save(user);
         return "redirect:/login";
