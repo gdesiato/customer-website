@@ -1,10 +1,13 @@
 package com.example.customerwebsite.controller;
 
 import com.example.customerwebsite.model.Customer;
+import com.example.customerwebsite.model.Role;
 import com.example.customerwebsite.model.User;
+import com.example.customerwebsite.repositories.RoleRepository;
 import com.example.customerwebsite.services.CustomerService;
 import com.example.customerwebsite.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -12,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 // We want to create some ENDPOINTS or some SERVLETS which are going to be used by third parties (the outside world)
@@ -24,6 +28,12 @@ public class CustomerController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private RoleRepository roleRepository;
 
     //call the service to retrieve all the customers
     @GetMapping("/")
@@ -109,6 +119,9 @@ public class CustomerController {
         if (bindingResult.hasErrors()) {
             return "register";
         }
+        Role roleUser = roleRepository.findRoleByName("USER");
+        user.setRoles(Collections.singletonList(roleUser));
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         userService.save(user);
         return "redirect:/login";
     }

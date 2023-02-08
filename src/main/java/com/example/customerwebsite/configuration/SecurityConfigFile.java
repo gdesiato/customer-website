@@ -23,9 +23,10 @@ public class SecurityConfigFile {
                         // Allow users with USER_ROLE access to "/customer-view", and require ADMIN_ROLE for all other endpoints.
                         // Add the .formLogin() method to enable the Spring generated login page.
                         .antMatchers("/","/webjars/**", "/css/**", "/login/**", "/images/**").permitAll()
-                        .antMatchers("/register").permitAll()
-                        .antMatchers("/customer-view").hasRole("USER_ROLE")
-                        .antMatchers("/**").hasRole("ADMIN_ROLE")
+                        .antMatchers("/register", "/error").permitAll()
+//                        .antMatchers("/customer-view").hasRole("USER_ROLE")
+                        .antMatchers("/cars").hasRole("USER")
+                        .antMatchers("/**").hasRole("ADMIN")
                 //all other requests should be authenticated
                 .anyRequest().authenticated())
                 .formLogin();
