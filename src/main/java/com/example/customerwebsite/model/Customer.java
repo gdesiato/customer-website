@@ -2,6 +2,7 @@ package com.example.customerwebsite.model;
 
 import lombok.*;
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @AllArgsConstructor
@@ -19,6 +20,8 @@ public class Customer {
     private String email;
     private Integer age;
     private String address;
+    private Date nameUpdatedAt;
+    private Date designationUpdatedAt;
 
     // MAPPEDBY means that the Customer is the owning side of this OneToOne relationship
     // and the RentalCar is the non-owning side of this relationship
@@ -27,5 +30,6 @@ public class Customer {
 
     @OneToOne (mappedBy = "customer")
     private RentalMoto moto;
+
 
 }

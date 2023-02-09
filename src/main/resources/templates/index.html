@@ -1,18 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-
-    <h1 style="text-align:center"><strong>CAR AND MOTO RENTAL COMPANY</strong></h1>
-    <pre>
-
-
-    </pre>
-    <h2 style="text-align:center">Welcome</h2>
-    <p style="text-align:center">Please&nbsp;<a href="http://localhost:8080/register">Register an account</a></p>
-
+    <header>
+        <nav>
+            <div style="display: inline-block; margin-right: 10px;">
+                <a th:href="@{/admin-dashboard}" class="btn btn-primary">ADMIN</a>
+            </div>
+            <div style="display: inline-block;">
+                <a th:href="@{/user-dashboard}" class="btn btn-primary">USER</a>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <form method="get" action="/register">
+            <h1 style="text-align:center"><strong>CAR AND MOTO RENTAL COMPANY</strong></h1>
+            <pre>
+            </pre>
+            <h2 style="text-align:center">Welcome</h2>
+            <p style="text-align:center">Please&nbsp;<button type="submit">Create a new Account</button></p>
+        </form>
+    </main>
 </body>
 </html>

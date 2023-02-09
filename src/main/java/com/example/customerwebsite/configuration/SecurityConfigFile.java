@@ -25,8 +25,8 @@ public class SecurityConfigFile {
                         .antMatchers("/","/webjars/**", "/css/**", "/login/**", "/images/**").permitAll()
                         .antMatchers("/register", "/error").permitAll()
 //                        .antMatchers("/customer-view").hasRole("USER_ROLE")
-                        .antMatchers("/cars").hasRole("USER")
-                        .antMatchers("/**").hasRole("ADMIN")
+//                        .antMatchers("/cars").hasRole("USER")
+//                        .antMatchers("/**").hasRole("ADMIN")
                 //all other requests should be authenticated
                 .anyRequest().authenticated())
                 .formLogin();
