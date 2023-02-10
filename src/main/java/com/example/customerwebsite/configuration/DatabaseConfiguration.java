@@ -3,8 +3,10 @@ package com.example.customerwebsite.configuration;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.batch.BatchDataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 
 import javax.sql.DataSource;
 
@@ -18,6 +20,7 @@ public class DatabaseConfiguration {
     @Value("${datasource.password}") private String datasourcePassword;
 
     @Bean
+    @BatchDataSource
     public DataSource mainDatasource() {
         HikariConfig config = new HikariConfig();
         config.setDriverClassName(datasourceDriver);
