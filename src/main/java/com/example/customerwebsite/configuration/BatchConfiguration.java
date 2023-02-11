@@ -77,10 +77,10 @@ public class BatchConfiguration {
 
     @Component
     public static class NameProcessor implements ItemProcessor<Customer, Customer> {
-        // This helps you to process the names of the employee at a set time
+        // This helps you to process the names of the customer at a set time
         @Override
         public Customer process(Customer customer) {
-            customer.setFullName(customer.getFullName().toUpperCase());
+            customer.setUsername(customer.getUsername().toUpperCase());
             return customer;
         }
     }

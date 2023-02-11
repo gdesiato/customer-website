@@ -14,16 +14,16 @@ import javax.sql.DataSource;
 public class DatabaseConfiguration {
     // @Value annotation assigns the value to attribute at the time of bean creation
     @Value("${datasource.driver}") private String datasourceDriver;
-    @Value("${datasource.url}") private String mainDatasourceUrl;
+    @Value("${datasource.url}") private String datasourceUrl;
     @Value("${datasource.username}") private String datasourceUsername;
     @Value("${datasource.password}") private String datasourcePassword;
 
     @Bean
     @BatchDataSource
-    public DataSource mainDatasource() {
+    public DataSource datasource() {
         HikariConfig config = new HikariConfig();
         config.setDriverClassName(datasourceDriver);
-        config.setJdbcUrl(mainDatasourceUrl);
+        config.setJdbcUrl(datasourceUrl);
         config.setUsername(datasourceUsername);
         config.setPassword(datasourcePassword);
         return new HikariDataSource(config);

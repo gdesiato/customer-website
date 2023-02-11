@@ -7,10 +7,7 @@ import org.springframework.batch.core.repository.JobInstanceAlreadyCompleteExcep
 import org.springframework.batch.core.repository.JobRestartException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/batch")
@@ -22,8 +19,8 @@ public class BatchController {
     @Autowired
     private Job job;
 
-    @GetMapping(value = "/job")
-    public String testJob(@RequestParam(name = "id") String jobId) {
+    @GetMapping(value = "/job/{id}")
+    public String testJob(@PathVariable(name = "id") String jobId) {
         JobParametersBuilder jobParametersBuilder = new JobParametersBuilder();
         if (StringUtils.hasLength(jobId)) {
             jobParametersBuilder.addString("jobId", jobId);

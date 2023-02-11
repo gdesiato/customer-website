@@ -57,7 +57,7 @@ public class CustomerController {
         if (customerService.getAllCustomers().isEmpty()) {
             List<Customer> customerList = customerService.saveAllCustomer(Arrays.asList(
                     Customer.builder()
-                            .fullName("Customer 1")
+                            .username("Customer 1")
                             .email("customer1@gmail.com")
                             .address("Customer Address One")
                             .age(30).build()));

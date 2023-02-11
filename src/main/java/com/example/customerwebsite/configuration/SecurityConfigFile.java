@@ -24,6 +24,7 @@ public class SecurityConfigFile {
                         // Add the .formLogin() method to enable the Spring generated login page.
                         .antMatchers("/","/webjars/**", "/css/**", "/login/**", "/images/**").permitAll()
                         .antMatchers("/register", "/error").permitAll()
+                        .antMatchers("/batch/**").permitAll()
 //                        .antMatchers("/customer-view").hasRole("USER_ROLE")
 //                        .antMatchers("/cars").hasRole("USER")
 //                        .antMatchers("/**").hasRole("ADMIN")
